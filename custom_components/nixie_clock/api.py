@@ -101,6 +101,7 @@ class NixieApiClient:
                             "password": self._password,
                             "client_secret": "ws7TQHXp5W6444t4",
                         },
+                        headers={"Content-type": "multipart/form-data"},
                     )
                     _verify_response_or_raise(response)
                     data = await response.json()
