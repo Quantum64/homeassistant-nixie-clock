@@ -104,20 +104,20 @@ class NixieApiClient:
                         #headers={"Content-type": "multipart/form-data"},
                     )
                     _verify_response_or_raise(response)
-                    data = await response.json()
-                    self._access_token = data["data"]["access_token"]
+                    token_data = await response.json()
+                    self._access_token = token_data["data"]["access_token"]
             except TimeoutError as exception:
-                msg = f"Timeout error fetching information - {exception} {data}"
+                msg = f"Timeout error fetching information - {exception} {token_data}"
                 raise NixieApiClientCommunicationError(
                     msg,
                 ) from exception
             except (aiohttp.ClientError, socket.gaierror) as exception:
-                msg = f"Error fetching information - {exception} {data}"
+                msg = f"Error fetching information - {exception} {token_data}"
                 raise NixieApiClientCommunicationError(
                     msg,
                 ) from exception
             except Exception as exception:  # pylint: disable=broad-except
-                msg = f"Something really wrong happened! - {exception} {data}"
+                msg = f"Something really wrong happened! - {exception} {token_data}"
                 raise NixieApiClientError(
                     msg,
                 ) from exception
