@@ -1,6 +1,5 @@
 {
   "name": "Puri Nixie Clock",
   "homeassistant": "2024.12.0",
-  "hacs": "2.0.1",
-  "documentation": "N/A"
+  "hacs": "2.0.1"
 }
