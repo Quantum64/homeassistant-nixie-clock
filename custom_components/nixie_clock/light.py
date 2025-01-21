@@ -70,7 +70,7 @@ class NixieDisplay(NixieEntity, LightEntity):
 
 
     async def async_turn_on(self, **kwargs: Any) -> None:
-        await self.coordinator.config_entry.runtime_data.client.async_set_param(PARAM_BRIGHTNESS, math.ceil(percentage_to_ranged_value((1, 255), kwargs.get(ATTR_BRIGHTNESS, 255))))
+        await self.coordinator.config_entry.runtime_data.client.async_set_param(PARAM_BRIGHTNESS, int(kwargs.get(ATTR_BRIGHTNESS, 255)))
         await self.coordinator.async_request_refresh()
 
     async def async_turn_off(self, **_: Any) -> None:
