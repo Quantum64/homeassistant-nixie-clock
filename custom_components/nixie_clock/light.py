@@ -49,13 +49,17 @@ class NixieDisplay(NixieEntity, LightEntity):
         super().__init__(coordinator)
         self.entity_description = entity_description
         self._attr_supported_color_modes = {"brightness"}
+        self._attr_color_mode = "brightness"
 
     @property
     def is_on(self) -> bool:
         return self.coordinator.data.get(PARAM_BRIGHTNESS) > 1
 
-    async def brightness(self) -> int | None:
+    @property
+    def brightness(self) -> int | None:
         brightness = self.coordinator.data.get(PARAM_BRIGHTNESS)
+        if brightness is not None:
+            brightness = int(brightness)
         if brightness == 1:
             return 0
         return brightness
