@@ -138,7 +138,7 @@ class NixieApiClient:
                     method=method,
                     url=endpoint,
                     headers=headers,
-                    json=data,
+                    data=data,
                 )
                 _verify_response_or_raise(response)
                 return await response.json()
