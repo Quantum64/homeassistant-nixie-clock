@@ -131,7 +131,7 @@ class NixieApiClient:
                 data["client_id"] = "3rdparty"
                 data["client_secret"] = "ws7TQHXp5W6444t4"
                 data["access_token"] = token
-        endpoint = f"{API_BASE}/v1/{endpoint}{urlencode(params)}"
+        endpoint = f"{API_BASE}/v1/{endpoint}?{urlencode(params)}"
         try:
             async with async_timeout.timeout(10):
                 response = await self._session.request(
